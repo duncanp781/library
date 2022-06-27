@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src = 'script.js' defer></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>My Library</header>
+  <button id = 'add-book'> Add Book</button>
+  <div class="cards"></div>
+  <div class = "modal" id = 'book-modal'>
+    <div id = 'book-form'>
+      <span id = 'modal-close'>X</span>
+      <form method = 'post' id = 'add-book-form'>
+        <ul>
+          <li>
+            <label for="book-title">Title:</label>
+            <input type="text" name="Title" id="book-title"></li>
+          <li>
+            <label for="book-author">Author:</label>
+            <input type ='text' name = "author" id ="book-author"></li>
+          <li>
+            <label for="book-pages">Pages:</label>
+            <input type = 'tel' name = 'pages' id = 'book-pages'></li>
+          <li>
+            <label for="book-read">Read Before?</label>
+            <input type = 'checkbox' name = 'read' id = 'book-read'></li>
+          <li><button type="submit">Add Book</button></li>
+        </ul>
+      </form>
+    </div>
+
+  </div>
+</body>
+</html>
