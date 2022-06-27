@@ -7,10 +7,12 @@ const form = document.getElementById('add-book-form');
 let myLibrary = [];
 
 function Book(title, author, pages, read){
+  this.createdTime = new Date();
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.read = read;
+  this.displayed = false;
   this.readString = function(){
     if(read){
       return 'read';
@@ -24,35 +26,58 @@ function Book(title, author, pages, read){
 }
 
 function addBookToLibrary(book){
+  book.index = myLibrary.length;
   myLibrary.push(book);
 }
 
 function displayLibrary(){
   for(item of myLibrary){
-    displayBook(item);
+    if (!item.displayed){
+      displayBook(item);
+      item.displayed = true;
+    }
   }
 }
 function createCard(book){
   const card = document.createElement('div');
   card.classList.add('card');
+  card.setAttribute('index', book.index);
+
+  const garbage = document.createElement('div');
+  garbage.addEventListener('click', () => removeFromLibrary(book));
+  garbage.textContent = 'X';
 
   const title = document.createElement('div');
   title.classList.add('title');
   title.textContent = `Title: ${book.title}` ;
+
   const author = document.createElement('div');
   author.classList.add('author');
   author.textContent = `Author: ${book.author}`;
+
   const pages = document.createElement('div');
   pages.classList.add('pages');
   pages.textContent = `Pages: ${book.pages}`;
 
+  card.appendChild(garbage);
   card.appendChild(title);
   card.appendChild(author);
   card.appendChild(pages);
 
+  book.card = card;
   return card;
 }
 
+
+function removeFromLibrary(book){
+  myLibrary.splice(book.index,1);
+  const card = book.card;
+  card.remove();
+  for(let i = book.index; i < myLibrary.length; i++){
+    myLibrary[i].index -=1;
+  }
+
+}
 
 function displayBook(book){
   const cards = document.querySelector('.cards');

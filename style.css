@@ -63,13 +63,19 @@ form ul li input[type = 'checkbox']{
   justify-self: left;
 }
 
+.cards{
+  display: flex;
+  gap: 32px;
+}
+
 
 .cards .card{
   border: 1px solid black;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
-  height: 60px;
+  height: fit-content;
   width: 200px;
+  padding: 32px;
 }
 
 .cards .card .title{
