@@ -25,27 +25,30 @@ form.addEventListener('submit', (e) =>{
   closeModal();
 });
 
+class Book{
+  constructor(title, author, pages, read){
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
 
+    this.createdTime = new Date();
+  }
 
-function Book(title, author, pages, read){
-  this.createdTime = new Date();
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-  this.displayed = false;
-  this.readString = function(){
-    if(read){
+  readString= () => {
+    if(this.read){
       return 'Read';
     }else{
       return 'Unread';
     }
   }
-  this.display = function(){
-    return `${title} by ${author}, ${pages} pages, ${this.readString()}`;
+
+  display = () => {
+    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.readString()}`;
   }
-  this.toggleRead = function(){
-    read = !read;
+
+  toggleRead = () => {
+    this.read = !this.read;
   }
 }
 
